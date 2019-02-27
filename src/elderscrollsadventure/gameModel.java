@@ -15,12 +15,15 @@ package elderscrollsadventure;
 public class gameModel {
 
     private int playerHP, playerMana;
-    private String weapon, position;
+    private String weapon;
+//            , position;
     
-    public gameModel(String weapon, String position, int playerHP, int playerMana){
+    public gameModel(String weapon, 
+//            String position, 
+            int playerHP, int playerMana){
         this.playerHP = playerHP;
         this.playerMana = playerMana;
-        this.position = position;
+//        this.position = position;
         this.weapon = weapon;
     }
 
@@ -69,14 +72,14 @@ public class gameModel {
     /**
      * @return the position
      */
-    public String getPosition() {
-        return position;
-    }
-
-    /**
-     * @param position the position to set
-     */
-    public void setPosition(String position) {
-        this.position = position;
-    }
+//    public String getPosition() {
+//        return position;
+//    }
+//
+//    /**
+//     * @param position the position to set
+//     */
+//    public void setPosition(String position) {
+//        this.position = position;
+//    }
 }
