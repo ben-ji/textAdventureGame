@@ -8,6 +8,7 @@ package elderscrollsadventure;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,15 +43,18 @@ public class gameView {
         private JLabel manaLabelNumber;
         private JLabel weaponLabel;
         private JLabel weaponLabelName;
-        private Font titleFont = new Font("Times New Roman", Font.PLAIN, 56);
-        private Font normalFont = new Font("Times New Roman", Font.PLAIN, 18);
+        private Font titleFont = new Font("Times New Roman", Font.PLAIN, 40);
+        private Font normalFont = new Font("DialogInput", Font.PLAIN, 18);
         private JButton startButton;
         private JButton navButton1;
         private JButton navButton2;
         private JButton navButton3;
         private JButton navButton4;
         private JTextArea mainTextArea;
-
+        private JPanel imagePanel;
+        private JLabel imageLabel;
+        private ImageIcon dragonImage;
+        private ImageIcon guardImage;
         
         public gameView(String title){
                     
@@ -60,15 +64,14 @@ public class gameView {
             gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             gameWindow.getContentPane().setBackground(Color.black);
             gameWindow.setLayout(null);
-//            gameWindow.setVisible(true);
             gameWindow.setResizable(false);
             gameWindow.setTitle("Elder Scrolls Adventure");
 
             //title panel
             titleNamePanel = new JPanel();
             titleNamePanel.setBounds(100, 100, 600, 150);
-            titleNamePanel.setBackground(Color.black);
-            titleNameLabel = new JLabel("Elder Scrolls: Adventure");
+            titleNamePanel.setOpaque(false);
+            titleNameLabel = new JLabel("Elder Scrolls: ADVENTURE");
             titleNameLabel.setForeground(Color.white);
             titleNameLabel.setFont(titleFont);
             gameWindow.add(titleNamePanel);
@@ -76,7 +79,7 @@ public class gameView {
             //start button panel
             startButtonPanel = new JPanel();
             startButtonPanel.setBounds(300, 400, 200, 100);
-            startButtonPanel.setBackground(Color.black);
+            startButtonPanel.setOpaque(false);
             startButton = new JButton("START");
             startButton.setBackground(Color.black);
             startButton.setForeground(Color.white);
@@ -88,13 +91,11 @@ public class gameView {
             titleNamePanel.add(titleNameLabel);
             startButtonPanel.add(startButton);
             
-            
-            //create new game gameWindow?
-            //create 
+            //create navButtonPanel and navButton elements (1-4), used for traversing the story
             
             navButtonPanel = new JPanel();
             navButtonPanel.setBounds(250, 350, 300, 150);
-            navButtonPanel.setBackground(Color.black);
+            navButtonPanel.setOpaque(false);
             navButtonPanel.setLayout(new GridLayout(4, 1));
             gameWindow.add(navButtonPanel);
 
@@ -103,7 +104,6 @@ public class gameView {
             navButton1.setForeground(Color.white);
             navButton1.setFont(normalFont);
             navButton1.setFocusPainted(false);
-//            navButton1.addActionListener(handleNav);
             navButton1.setActionCommand("n1");
             navButtonPanel.add(navButton1);
 
@@ -112,7 +112,6 @@ public class gameView {
             navButton2.setForeground(Color.white);
             navButton2.setFont(normalFont);
             navButton2.setFocusPainted(false);
-//            navButton2.addActionListener(handleNav);
             navButton2.setActionCommand("n2");
             navButtonPanel.add(navButton2);
 
@@ -121,7 +120,6 @@ public class gameView {
             navButton3.setForeground(Color.white);
             navButton3.setFont(normalFont);
             navButton3.setFocusPainted(false);
-//            navButton3.addActionListener(handleNav);
             navButton3.setActionCommand("n3");
             navButtonPanel.add(navButton3);
 
@@ -130,13 +128,13 @@ public class gameView {
             navButton4.setForeground(Color.white);
             navButton4.setFont(normalFont);
             navButton4.setFocusPainted(false);
-//            navButton4.addActionListener(handleNav);
             navButton4.setActionCommand("n4");
             navButtonPanel.add(navButton4);
             
+            // create mainTextPanel and mainTextArea, which is where dialog will be displayed
             mainTextPanel = new JPanel();
             mainTextPanel.setBounds(100, 100, 600, 250);
-            mainTextPanel.setBackground(Color.black);
+            mainTextPanel.setOpaque(false);
             gameWindow.add(mainTextPanel);
 
             mainTextArea = new JTextArea("Main text areaMain text areaMain text areaMain text areaMain text areaMain text areaMain text areaMain text areaMain text areaMain text area");
@@ -149,10 +147,11 @@ public class gameView {
             mainTextArea.setEditable(false);
             mainTextPanel.add(mainTextArea);
             
-//            gameWindow = new JFrame();
+            // create playerPanel, contains all the player info labels
+            
             playerPanel = new JPanel();
-            playerPanel.setBounds(100, 15, 800, 50);
-            playerPanel.setBackground(Color.black);
+            playerPanel.setBounds(100, 15, 600, 50);
+            playerPanel.setOpaque(false);
             playerPanel.setLayout(new GridLayout(2, 6));
             gameWindow.add(playerPanel);
 
@@ -170,7 +169,6 @@ public class gameView {
             weaponLabel.setFont(normalFont);
             weaponLabel.setForeground(Color.white);
             playerPanel.add(weaponLabel);
-
             
             hpLabelNumber = new JLabel();
             hpLabelNumber.setFont(normalFont);
@@ -187,6 +185,19 @@ public class gameView {
             weaponLabelName.setForeground(Color.white);
             playerPanel.add(weaponLabelName);
             
+            // create imagePanel, which shows an image in the background
+            
+            imagePanel = new JPanel();
+            imagePanel.setBounds(100,150,600,400);
+            imagePanel.setBackground(Color.black);
+            gameWindow.add(imagePanel);
+            imageLabel = new JLabel();
+            imagePanel.add(imageLabel);
+            
+            // create ImageIcons to hold all of the necessary images
+            guardImage = new ImageIcon(".//images//Whiterun_Hold_Guard_Skyrim.png");
+            dragonImage = new ImageIcon(".//images//Elder-Scrolls-V-Skyrim-How-To-Kill-Dragons.jpg");
+
     }
 
     /**
@@ -478,5 +489,61 @@ public class gameView {
      */
     public void setManaLabel(JLabel manaLabel) {
         this.manaLabel = manaLabel;
+    }
+
+    /**
+     * @return the imagePanel
+     */
+    public JPanel getImagePanel() {
+        return imagePanel;
+    }
+
+    /**
+     * @param imagePanel the imagePanel to set
+     */
+    public void setImagePanel(JPanel imagePanel) {
+        this.imagePanel = imagePanel;
+    }
+
+    /**
+     * @return the imageLabel
+     */
+    public JLabel getImageLabel() {
+        return imageLabel;
+    }
+
+    /**
+     * @param imageLabel the imageLabel to set
+     */
+    public void setImageLabel(JLabel imageLabel) {
+        this.imageLabel = imageLabel;
+    }
+
+    /**
+     * @return the dragonImage
+     */
+    public ImageIcon getDragonImage() {
+        return dragonImage;
+    }
+
+    /**
+     * @param dragonImage the dragonImage to set
+     */
+    public void setDragonImage(ImageIcon dragonImage) {
+        this.dragonImage = dragonImage;
+    }
+
+    /**
+     * @return the guardImage
+     */
+    public ImageIcon getGuardImage() {
+        return guardImage;
+    }
+
+    /**
+     * @param guardImage the guardImage to set
+     */
+    public void setGuardImage(ImageIcon guardImage) {
+        this.guardImage = guardImage;
     }
 }

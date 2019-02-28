@@ -12,7 +12,7 @@ package elderscrollsadventure;
 public class elderScrollsGame {
     
     public static void main(String[] args){
-        gameModel m = new gameModel("Ancient Nord Sword", 15, 100);
+        gameModel m = new gameModel("Shortsword", 15, 100);
         gameView v = new gameView("Elder Scrolls: Adventure");
         gameCntl c = new gameCntl(m,v);
         c.initCntl();
