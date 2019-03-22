@@ -49,6 +49,7 @@ public class gameCntl {
     public void initCntl() {
         //maybe add difficulty selection button 
         VIEW.getStartButton().addActionListener(e -> startGame());
+        // view.buttonToGoToCrossroad -> crossRoadNav
     }
     
     
@@ -85,6 +86,27 @@ public class gameCntl {
     // other paths of the story will go here, such as crossRoadNav
     
 //    private void crossRoadNav() {
+//        
+//        // make necessary panels visible
+//        VIEW.getStartButtonPanel().setVisible(false);
+//        VIEW.getTitleNamePanel().setVisible(false);
+//        VIEW.getPlayerPanel().setVisible(true);
+//        VIEW.getMainTextPanel().setVisible(true);
+//        VIEW.getNavButtonPanel().setVisible(true);
+//        VIEW.getImagePanel().setVisible(true);
+//        
+//        // make necessary buttons visible
+//        VIEW.getNavButton3().setVisible(false);
+//        VIEW.getNavButton4().setVisible(false);
+//        VIEW.getNavButton1().setText("Talk to Whiterun Guard");
+//        VIEW.getNavButton2().setText("Attack Whiterun Guard");
+//        
+//        // set story text
+//        VIEW.getMainTextArea().setText("Greetings, Adventurer! \nYour journey starts here - in the small village of Whiterun. "
+//                + "\nA guard stands at its gates. What will you do?");
+//        
+//        // set background image
+//        VIEW.getImageLabel().setIcon(VIEW.getGuardImage());
 //        
 //    }
 }
