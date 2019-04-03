@@ -11,7 +11,7 @@ package elderscrollsadventure;
  */
 // handles location change
 // init hp/mana/weapon values
-// updates user values
+// updates user valuesb 
 public class gameModel {
 
     private int playerHP, playerMana;
